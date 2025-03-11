@@ -1,0 +1,17 @@
+default: &default
+  adapter: sqlserver
+  host: localhost
+  port: 1433
+  username: sa
+  password: ThuatDev@2002
+  database: railscoursedb
+  encoding: utf8
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
