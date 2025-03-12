@@ -1,4 +1,6 @@
 class Role < ApplicationRecord
   has_many :admins
-  validates :name, presence :true, uniqueness: true
+  has_many :permission_roles, dependent: :destroy
+  has_many :permissions, through: :permission_roles
+  validates :name, presence: true, uniqueness: true
 end
