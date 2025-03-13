@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :admins, controllers: { sessions: 'admins/sessions', registrations: 'admins/registrations' }
+  get "products/index"
+  get "products/new"
+  get "products/create"
+  get "products/edit"
+  get "products/update"
+  get "products/destroy"
+  devise_for :admins, controllers: { sessions: "admins/sessions", registrations: "admins/registrations" }
   # Đảm bảo sign_out hoạt động với phương thức DELETE
   devise_scope :admin do
-  get '/admins/sign_out', to: 'admins/sessions#destroy', as: :admin_logout
+  get "/admins/sign_out", to: "admins/sessions#destroy", as: :admin_logout
 end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -16,14 +22,15 @@ end
 
   # Defines the root path route ("/")
   # root "posts#index"
-  get 'customers/edit_customer', to: 'customers#edit_customer', as: 'edit_customer'
-  post 'customers/manage_customer', to: 'customers#manage_customer', as: 'manage_customer'
-  get 'roles/:id/permissions', to: 'roles#permissions', as: 'permissions'
-  post 'roles/:id/store_permissions', to: 'roles#store_permissions', as: 'store_permissions'
-  
+  get "customers/edit_customer", to: "customers#edit_customer", as: "edit_customer"
+  post "customers/manage_customer", to: "customers#manage_customer", as: "manage_customer"
+  get "roles/:id/permissions", to: "roles#permissions", as: "permissions"
+  post "roles/:id/store_permissions", to: "roles#store_permissions", as: "store_permissions"
+
   resources :roles
   resources :staff_users
-  resources :customers, only: [:edit, :update]
-  resources :dashboard, only: [:index]
+  resources :customers, only: [ :edit, :update ]
+  resources :dashboard, only: [ :index ]
+  resources :products
   root "dashboard#index"
 end

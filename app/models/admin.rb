@@ -3,8 +3,8 @@ class Admin < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable
-  
-  enum :admin_type, [:super_admin, :customer, :staff_user]
+
+  enum :admin_type, [ :super_admin, :customer, :staff_user ]
   belongs_to :role, optional: true
 
   before_save :manage_role

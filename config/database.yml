@@ -3,7 +3,8 @@ default: &default
   host: localhost
   port: 1433
   username: sa
-  password: ThuatDev@2002
+  # password: ThuatDev@2002
+  password: Thuat123
   database: railscoursedb
   encoding: utf8
 
