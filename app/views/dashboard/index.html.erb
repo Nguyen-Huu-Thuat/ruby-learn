@@ -1,5 +1,5 @@
 <div class="container">
-  <% if admin_signed_in? && current_admin.super_admin? %>
+  <% if admin_signed_in? && current_admin.role_id == 2 %>
     <%= link_to "Roles", roles_path, class: "btn btn-primary mt-4" %>
     <%= link_to "Staff Users", staff_users_path, class: "btn btn-primary mt-4 ml-4" %>
   <% end %>

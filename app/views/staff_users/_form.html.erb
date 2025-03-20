@@ -13,17 +13,28 @@
     <span>Last name: </span>
     <%= f.text_field :last_name, required: true %>
   </div>
+  <div class="mb-2" data-controller="avatar-preview">
+    <span>Avatar: </span>
+    <div>
+      <% if @staff_user.avatar.attached? %>
+        <img data-avatar-preview-target="preview" id="avatar-preview" src="<%= url_for(@staff_user.avatar) %>" alt="Avatar Preview" width="100" height="100" style="border-radius: 10px; margin-bottom: 5px;">
+      <% else %>
+        <img data-avatar-preview-target="preview" id="avatar-preview" src="#" alt="Avatar Preview" width="100" height="100" style="display: none; border-radius: 10px; margin-bottom: 5px;">
+      <% end %>
+    </div>
+    <%= f.file_field :avatar, required: @staff_user.new_record?, id: "avatar-input", data: { action: "change->avatar-preview#preview", avatar_preview_target: "input" } %>
+  </div>
   <div class="mb-2">
     <span>Email: </span>
     <%= f.email_field :email, required: true %>
   </div>
   <div class="mb-2">
     <span>Password: </span>
-    <%= f.password_field :password, required: true %>
+    <%= f.password_field :password, required: @staff_user.new_record? %>
   </div>
   <div class="mb-2">
     <span>Password Confirmation: </span>
-    <%= f.password_field :password_confirmation, required: true %>
+    <%= f.password_field :password_confirmation, required: @staff_user.new_record? %>
   </div>
   <div class="mb-2">
     <span>Role: </span>
